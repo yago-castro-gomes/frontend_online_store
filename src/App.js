@@ -1,12 +1,13 @@
 import React from 'react';
 
 import './App.css';
+import InitialPage from './pages/InitialPage';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        commit inicial
+        <InitialPage />
       </div>
     );
   }
