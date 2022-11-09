@@ -8,7 +8,7 @@ class InitialPage extends Component {
     inputText: '',
     isButtonDisable: true,
     search: [],
-    isUndefined: false,
+    isUndefined: true,
   };
 
   async componentDidMount() {
