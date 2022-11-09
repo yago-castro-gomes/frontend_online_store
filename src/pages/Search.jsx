@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Home extends Component {
+class Search extends Component {
   render() {
     return (
       <div>
@@ -21,3 +21,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default Search;
