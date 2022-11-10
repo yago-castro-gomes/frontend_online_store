@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Search from '../components/Search';
 import AddToCart from '../components/AddToCart';
+import Categories from '../components/Categories';
 
 export default class Home extends Component {
   render() {
@@ -8,7 +8,22 @@ export default class Home extends Component {
       <section>
         <h2>Home</h2>
         <AddToCart />
-        <Search />
+        <Categories />
+        <div>
+          <form>
+            <label htmlFor="search">
+              Search:
+              <input
+                name="search"
+                type="text"
+                id="search"
+              />
+              <p data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>
+            </label>
+          </form>
+        </div>
       </section>
     );
   }
