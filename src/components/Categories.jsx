@@ -3,6 +3,7 @@ import { getCategories, getProductsFromCategoryAndQuery } from '../services/api'
 
 export default class Categories extends Component {
   state = {
+
     getDataCategories: [],
     getItemCategories: [],
   };
