@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
+import Search from '../components/Search';
+import AddToCart from '../components/AddToCart';
 
-export default class Searchch extends Component {
+export default class Home extends Component {
   render() {
     return (
-      <div>
-        <form>
-          <label htmlFor="search">
-            Search:
-            <input
-              name="search"
-              type="text"
-              id="search"
-              data-testid="home-initial-message"
-            />
-          </label>
-          <p>
-            Digite algum termo de pesquisa ou escolha uma
-            categoria.
-
-          </p>
-        </form>
-      </div>
+      <section>
+        <h2>Home</h2>
+        <AddToCart />
+        <Search />
+      </section>
     );
   }
 }
