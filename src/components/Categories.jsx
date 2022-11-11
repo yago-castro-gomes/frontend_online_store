@@ -4,7 +4,6 @@ import { getCategories, getProductsFromCategoryAndQuery } from '../services/api'
 
 export default class Categories extends Component {
   state = {
-
     getDataCategories: [],
     getItemCategories: [],
   };
@@ -56,7 +55,8 @@ export default class Categories extends Component {
                 <img src={ item.thumbnail } alt={ item.title } />
                 <p>{ item.price }</p>
               </div>
-            </Link>))}
+            </Link>
+          ))}
         </div>
       </div>
     );

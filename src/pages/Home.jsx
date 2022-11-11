@@ -66,9 +66,11 @@ export default class Home extends Component {
                   data-testid="product-detail-link"
                   key={ item.id }
                 >
-                  <h1>{ item.title }</h1>
-                  <img src={ item.thumbnail } alt={ item.title } />
-                  <p>{ item.price }</p>
+                  <div data-testid="product">
+                    <h1>{ item.title }</h1>
+                    <img src={ item.thumbnail } alt={ item.title } />
+                    <p>{ item.price }</p>
+                  </div>
                 </Link>))}
             </li>
           )}
