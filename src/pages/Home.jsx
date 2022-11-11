@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AddToCart from '../components/AddToCart';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from '../components/Categories';
@@ -58,14 +59,18 @@ export default class Home extends Component {
             </label>
           </form>
           { notFound ? ('Nenhum produto foi encontrado') : (
-            <div>
+            <li>
               { resultsItems.map((item) => (
-                <li data-testid="product" key={ item.id }>
+                <Link
+                  to={ `/product/${item.id}` }
+                  data-testid="product-detail-link"
+                  key={ item.id }
+                >
                   <h1>{ item.title }</h1>
                   <img src={ item.thumbnail } alt={ item.title } />
                   <p>{ item.price }</p>
-                </li>))}
-            </div>
+                </Link>))}
+            </li>
           )}
         </div>
       </section>
