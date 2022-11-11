@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
 export default class Categories extends Component {
@@ -45,11 +46,17 @@ export default class Categories extends Component {
         </div>
         <div>
           { getItemCategories.map((item) => (
-            <li data-testid="product" key={ item.id }>
-              <h1>{ item.title }</h1>
-              <img src={ item.thumbnail } alt={ item.title } />
-              <p>{ item.price }</p>
-            </li>))}
+            <Link
+              to={ `/product/${item.id}` }
+              data-testid="product-detail-link"
+              key={ item.id }
+            >
+              <div data-testid="product">
+                <h1>{ item.title }</h1>
+                <img src={ item.thumbnail } alt={ item.title } />
+                <p>{ item.price }</p>
+              </div>
+            </Link>))}
         </div>
       </div>
     );
