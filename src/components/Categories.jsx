@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import CardProduct from './CardProduct';
 
 export default class Categories extends Component {
   state = {
@@ -11,7 +11,6 @@ export default class Categories extends Component {
   async componentDidMount() {
     const dataCategories = await getCategories();
     this.setState({ getDataCategories: dataCategories });
-    console.log();
   }
 
   showProducts = async ({ target }) => {
@@ -20,7 +19,6 @@ export default class Categories extends Component {
     this.setState({
       getItemCategories: data,
     });
-    console.log(data);
   };
 
   render() {
@@ -45,17 +43,15 @@ export default class Categories extends Component {
         </div>
         <div>
           { getItemCategories.map((item) => (
-            <Link
-              to={ `/product/${item.id}` }
-              data-testid="product-detail-link"
-              key={ item.id }
-            >
-              <div data-testid="product">
-                <h1>{ item.title }</h1>
-                <img src={ item.thumbnail } alt={ item.title } />
-                <p>{ item.price }</p>
-              </div>
-            </Link>
+            <div key={ item.id }>
+              <CardProduct
+                id={ item.id }
+                name={ item.title }
+                price={ item.price }
+                image={ item.thumbnail }
+                source={ `/product/${item.id}` }
+              />
+            </div>
           ))}
         </div>
       </div>
