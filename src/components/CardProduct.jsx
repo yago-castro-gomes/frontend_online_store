@@ -4,17 +4,23 @@ import PropTypes from 'prop-types';
 import { getProductById } from '../services/api';
 
 export default class CardProduct extends Component {
-  componentDidMount() {
-    localStorage.setItem('dataCart', JSON.stringify([]));
-  }
+  // componentDidMount() {
+  //   localStorage.setItem('dataCart', JSON.stringify([]));
+  // }
 
   handleClick = async ({ target }) => {
     const response = await getProductById(target.name);
-    console.log(response);
-    const data = JSON.parse(localStorage.getItem('dataCart'));
-    console.log(data);
-    data.push(response);
-    localStorage.setItem('dataCart', JSON.stringify(data));
+    // console.log(response);
+    // const targetId = target.name;
+    const emptyStorage = JSON.parse(localStorage.getItem('dataCart')) === null;
+    if (emptyStorage) {
+      const firstProduct = [response];
+      localStorage.setItem('dataCart', JSON.stringify(firstProduct));
+    } else {
+      const data = JSON.parse(localStorage.getItem('dataCart'));
+      const dataProducts = [...data, response];
+      localStorage.setItem('dataCart', JSON.stringify(dataProducts));
+    }
   };
 
   render() {
@@ -40,7 +46,7 @@ export default class CardProduct extends Component {
         <button
           name={ id }
           type="button"
-          data-testid="product-detail-add-to-cart"
+          data-testid="product-add-to-cart"
           onClick={ this.handleClick }
         >
           add cart
