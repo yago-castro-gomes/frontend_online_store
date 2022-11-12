@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import AddToCart from '../components/AddToCart';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from '../components/Categories';
+import CardProduct from '../components/CardProduct';
 
 export default class Home extends Component {
   state = {
@@ -60,18 +60,19 @@ export default class Home extends Component {
           </form>
           { notFound ? ('Nenhum produto foi encontrado') : (
             <li>
-              { resultsItems.map((item) => (
-                <Link
-                  to={ `/product/${item.id}` }
-                  data-testid="product-detail-link"
-                  key={ item.id }
-                >
-                  <div data-testid="product">
-                    <h1>{ item.title }</h1>
-                    <img src={ item.thumbnail } alt={ item.title } />
-                    <p>{ item.price }</p>
+              {
+                resultsItems.map((item) => (
+                  <div key={ item.id }>
+                    <CardProduct
+                      id={ item.id }
+                      name={ item.title }
+                      price={ item.price }
+                      image={ item.thumbnail }
+                      source={ `/product/${item.id}` }
+                    />
                   </div>
-                </Link>))}
+                ))
+              }
             </li>
           )}
         </div>
