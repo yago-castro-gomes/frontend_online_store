@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddToCart from '../components/AddToCart';
+import LinkCart from '../components/LinkCart';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from '../components/Categories';
 import CardProduct from '../components/CardProduct';
@@ -33,7 +33,7 @@ export default class Home extends Component {
     return (
       <section>
         <h2>Home</h2>
-        <AddToCart />
+        <LinkCart />
         <Categories />
         <div>
           <form>
