@@ -1,24 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { handleClick } from '../services/api';
 
 export default class CardProduct extends Component {
-  handleClick = async ({ target }) => {
-    const bag = {
-      name: target.title,
-      image: target.name,
-      price: target.id,
-    };
-    const emptyStorage = JSON.parse(localStorage.getItem('dataCart')) === null;
-    if (emptyStorage) {
-      localStorage.setItem('dataCart', JSON.stringify([bag]));
-    } else {
-      const data = JSON.parse(localStorage.getItem('dataCart'));
-      const dataProducts = [...data, bag];
-      localStorage.setItem('dataCart', JSON.stringify(dataProducts));
-    }
-  };
-
   render() {
     const {
       name,
@@ -44,7 +29,7 @@ export default class CardProduct extends Component {
           title={ name }
           name={ image }
           data-testid="product-add-to-cart"
-          onClick={ this.handleClick }
+          onClick={ handleClick }
         >
           add cart
         </button>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default class AddToCart extends Component {
+export default class LinkCart extends Component {
   render() {
     return (
       <Link to="/cart">

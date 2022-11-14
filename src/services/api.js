@@ -18,3 +18,19 @@ export async function getProductById(id) {
   const data = await promise.json();
   return data;
 }
+
+export function handleClick({ target }) {
+  const bag = {
+    name: target.title,
+    image: target.name,
+    price: target.id,
+  };
+  const emptyStorage = JSON.parse(localStorage.getItem('dataCart')) === null;
+  if (emptyStorage) {
+    localStorage.setItem('dataCart', JSON.stringify([bag]));
+  } else {
+    const data = JSON.parse(localStorage.getItem('dataCart'));
+    const dataProducts = [...data, bag];
+    localStorage.setItem('dataCart', JSON.stringify(dataProducts));
+  }
+}
