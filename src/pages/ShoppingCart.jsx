@@ -7,19 +7,13 @@ export default class ShoppingCart extends Component {
   };
 
   componentDidMount() {
-    // const dataCart = JSON.parse(localStorage.getItem('dataCart'));
-    // this.setState({ data: dataCart, empty: false });
-    // const { data } = this.state;
-    // console.log(dataCart);
-    this.recoverStorage();
-  }
-
-  recoverStorage = () => {
-    const { data } = this.state;
     const cartData = JSON.parse(localStorage.getItem('dataCart'));
-    console.log('dataCart'+ cartData);
-    this.setState({ data: cartData, empty: false });
-    console.log('aaa'+data);
+    if (cartData !== null) {
+      this.setState({
+        data: cartData,
+        empty: false,
+      });
+    }
   }
 
   render() {
@@ -34,9 +28,9 @@ export default class ShoppingCart extends Component {
             <div>
               {
                 data.map((item) => (
-                  <div key={ item.id }>
-                    <h3 data-testid="shopping-cart-product-name">{ item.title }</h3>
-                    <img src={ item.thumbnail } alt={ item.title } />
+                  <div key={ item.title }>
+                    <h3 data-testid="shopping-cart-product-name">{ item.name }</h3>
+                    <img src={ item.image } alt={ item.name } />
                     <p>{ item.price }</p>
                     <span data-testid="shopping-cart-product-quantity">1</span>
                   </div>

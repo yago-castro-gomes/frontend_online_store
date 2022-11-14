@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getProductById } from '../services/api';
 
 export default class CardProduct extends Component {
-  // componentDidMount() {
-  //   localStorage.setItem('dataCart', JSON.stringify([]));
-  // }
-
   handleClick = async ({ target }) => {
-    const response = await getProductById(target.name);
-    // console.log(response);
-    // const targetId = target.name;
+    const bag = {
+      name: target.title,
+      image: target.name,
+      price: target.id,
+    };
     const emptyStorage = JSON.parse(localStorage.getItem('dataCart')) === null;
     if (emptyStorage) {
-      const firstProduct = [response];
-      localStorage.setItem('dataCart', JSON.stringify(firstProduct));
+      localStorage.setItem('dataCart', JSON.stringify([bag]));
     } else {
       const data = JSON.parse(localStorage.getItem('dataCart'));
-      const dataProducts = [...data, response];
+      const dataProducts = [...data, bag];
       localStorage.setItem('dataCart', JSON.stringify(dataProducts));
     }
   };
 
   render() {
     const {
-      id,
       name,
       image,
       price,
@@ -44,8 +39,10 @@ export default class CardProduct extends Component {
           </div>
         </Link>
         <button
-          name={ id }
+          id={ price }
           type="button"
+          title={ name }
+          name={ image }
           data-testid="product-add-to-cart"
           onClick={ this.handleClick }
         >
