@@ -11,7 +11,6 @@ export default class Product extends Component {
   async componentDidMount() {
     const { match } = this.props;
     const { id } = match.params;
-    console.log(match);
 
     const data = await getProductById(id);
     this.setState({ productData: data });
@@ -20,30 +19,32 @@ export default class Product extends Component {
   render() {
     const { productData } = this.state;
     return (
-      <section>
-        <h2>Product Details</h2>
+      <>
         <LinkCart />
+        <section>
+          <h2>Product Details</h2>
 
-        <div data-testid="product">
-          <h3 data-testid="product-detail-name">{ productData.title }</h3>
-          <img
-            data-testid="product-detail-image"
-            src={ productData.thumbnail }
-            alt={ productData.title }
-          />
-          <span data-testid="product-detail-price">{ productData.price }</span>
-        </div>
-        <button
-          id={ productData.price }
-          type="button"
-          title={ productData.title }
-          name={ productData.thumbnail }
-          data-testid="product-detail-add-to-cart"
-          onClick={ handleClick }
-        >
-          add cart
-        </button>
-      </section>
+          <div data-testid="product">
+            <h3 data-testid="product-detail-name">{ productData.title }</h3>
+            <img
+              data-testid="product-detail-image"
+              src={ productData.thumbnail }
+              alt={ productData.title }
+            />
+            <span data-testid="product-detail-price">{ productData.price }</span>
+          </div>
+          <button
+            id={ productData.price }
+            type="button"
+            title={ productData.title }
+            name={ productData.thumbnail }
+            data-testid="product-detail-add-to-cart"
+            onClick={ handleClick }
+          >
+            add cart
+          </button>
+        </section>
+      </>
     );
   }
 }
