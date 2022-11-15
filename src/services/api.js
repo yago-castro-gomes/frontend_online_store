@@ -24,12 +24,18 @@ export function handleClick({ target }) {
     name: target.title,
     image: target.name,
     price: target.id,
+    // qtd: 1,
   };
   const emptyStorage = JSON.parse(localStorage.getItem('dataCart')) === null;
   if (emptyStorage) {
     localStorage.setItem('dataCart', JSON.stringify([bag]));
   } else {
     const data = JSON.parse(localStorage.getItem('dataCart'));
+    // if(data.includes(bag)) {
+
+    // }
+    // data.qtd += 1;
+    // console.log(bag);
     const dataProducts = [...data, bag];
     localStorage.setItem('dataCart', JSON.stringify(dataProducts));
   }
